@@ -1,0 +1,13 @@
+<project name="epubman-java" default="compile" basedir=".">
+	<target name="compile">
+		<echo message="-> Compile Java sources" />
+		<mkdir dir="${basedir}/classes" />
+		<javac srcdir="src" destdir="${basedir}/classes" debug="true" deprecation="false" optimize="true">
+			<classpath>
+				<fileset dir="${basedir}/lib">
+		        <include name="*.jar"/>
+		    </fileset>
+			</classpath>
+		</javac>
+	</target>
+</project>

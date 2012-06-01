@@ -38,7 +38,7 @@ if [ "X$COMMAND" = "Xadd" ]; then
 		exit 1
 	fi
 
-	newname=`java -Dfile.encoding=UTF8 -jar $EPUBMAN_DIR/lib/epublib-tools-cli-3.0-SNAPSHOT.jar f "$filepath" 2> $WORK_DIR/file_add_out2.log`
+	newname=`java -Dfile.encoding=UTF8 -cp $EPUBMAN_DIR/java/classes:$EPUBMAN_DIR/java/lib/* epubman.EpubCli f "$filepath" 2> $WORK_DIR/file_add_out2.log`
 	newpath="$FILES_DIR/$filename"
 
 	echo "Adding file\n\t$newpath"
@@ -75,6 +75,6 @@ elif [ "X$COMMAND" = "Xinfo" ]; then
 	fi
 	args=$@
 	args=${args:5}
-	java -Dfile.encoding=UTF8 -jar $EPUBMAN_DIR/lib/epublib-tools-cli-3.0-SNAPSHOT.jar "$c" "$f" 2> $WORK_DIR/file_info_out2.log
+	java -Dfile.encoding=UTF8 -cp $EPUBMAN_DIR/java/classes:$EPUBMAN_DIR/java/lib/* epubman.EpubCli "$c" "$f" 2> $WORK_DIR/file_info_out2.log
 fi
 
