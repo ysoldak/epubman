@@ -22,7 +22,7 @@ source $EPUBMAN_DIR/general.inc
 
 # ---
 
-COMMAND=$1 # add/del/info
+COMMAND=$1
 
 # ---
 
@@ -35,17 +35,22 @@ if [ "X$COMMAND" = "Xadd" ]; then
 	filepath=`get_abs_path "$2"`
 	if [ ! -s "$filepath" ]; then
 		echo "File does not exist!"
+		echo "$filepath"
 		exit 1
 	fi
 
 	newname=`java -Dfile.encoding=UTF8 -cp $EPUBMAN_DIR/java/classes:$EPUBMAN_DIR/java/lib/* epubman.EpubCli f "$filepath" 2> $WORK_DIR/file_add_out2.log`
-	newpath="$FILES_DIR/$filename"
+	newpath="$FILES_DIR/$newname"
 
 	echo "Adding file\n\t$newpath"
 	cp "$filepath" "$newpath"
 
 	if $INDEX_NEW_FILES ; then
 		$EPUBMAN_DIR/index.sh add "$newpath"
+	fi
+
+	if $DEVICE_NEW_FILES ; then
+		$EPUBMAN_DIR/device.sh add "$newpath"
 	fi
 
 elif [ "X$COMMAND" = "Xdel" ]; then
@@ -57,6 +62,7 @@ elif [ "X$COMMAND" = "Xdel" ]; then
 
 	if [[ "$filepath" =~ ^"$FILES_DIR"* ]]; then
 		$EPUBMAN_DIR/index.sh del "${filepath}"
+		$EPUBMAN_DIR/device.sh del "${filepath}"
 		echo "Removing file\n\t${filepath}"
 		rm "${filepath}"
 	else
