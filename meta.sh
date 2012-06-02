@@ -1,5 +1,17 @@
 #!/bin/sh
 
+###############################################################################
+# Edits .epub file metadata
+#
+# Usage:
+# ./meta.sh path/to/file.epub
+#
+# Requires:
+#   Pashua GUI tool to be installed ( http://www.bluem.net/en/mac/pashua/ )
+#
+###############################################################################
+
+
 pwd_tmp=`pwd`
 cd `dirname "$0"`
 EPUBMAN_DIR=`pwd`
