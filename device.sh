@@ -31,7 +31,7 @@ elif [ "X$COMMAND" = "Xdel" ]; then
 
 elif [ "X$COMMAND" = "Xsync" ]; then
 	echo "Syncing Nook with your Library"
-	rsync -cr --stats --delete --include='*.epub' --exclude='*.*' "$DEVICE_LOCAL_DIR" "$DEVICE_REMOTE_DIR"
+	rsync -L -cr --stats --delete --include='*.epub' --exclude='*.*' "$DEVICE_LOCAL_DIR/" "$DEVICE_REMOTE_DIR/"
 	echo ""
 	echo "Done!"
 
