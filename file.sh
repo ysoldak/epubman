@@ -53,6 +53,8 @@ if [ "X$COMMAND" = "Xadd" ]; then
 		$EPUBMAN_DIR/device.sh add "$newpath"
 	fi
 
+	$EPUBMAN_DIR/label.sh 
+
 elif [ "X$COMMAND" = "Xdel" ]; then
 	filepath=`get_abs_path "$2"`
 	if [ ! -s "$filepath" ]; then
@@ -83,4 +85,3 @@ elif [ "X$COMMAND" = "Xinfo" ]; then
 	args=${args:5}
 	java -Dfile.encoding=UTF8 -cp $EPUBMAN_DIR/java/classes:$EPUBMAN_DIR/java/lib/* epubman.EpubCli "$c" "$f" 2> $WORK_DIR/file_info_out2.log
 fi
-

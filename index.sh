@@ -71,14 +71,20 @@ common_del_empty_authors() {
 
 common_refresh_latest() {
 	echo "Refresh latest files index"
-	find "$FILES_DIR" -newerct "$INDEX_LATEST_PERIOD" -type f -print > "$WORK_DIR/latest.txt"
+	rm -r "$INDEX_LATEST"
+	mkdir -p "$INDEX_LATEST"
+	find "$FILES_DIR" -newerBt "$INDEX_LATEST_PERIOD" -type f -print > "$WORK_DIR/latest.txt"
 	if [ -s "$WORK_DIR/latest.txt" ] ; then
 		while read line; do
 			filename=`basename "$line"`
 			ln -sf "../../Files/$filename" "$INDEX_LATEST/$filename"
 		done < "$WORK_DIR/latest.txt"
 	fi
-	rm "$WORK_DIR/latest.txt"	
+	rm "$WORK_DIR/latest.txt"
+}
+
+common_refresh_labels() {
+	$EPUBMAN_DIR/label.sh
 }
 
 # ---
@@ -105,3 +111,4 @@ fi
 
 common_del_empty_authors
 common_refresh_latest
+common_refresh_labels
