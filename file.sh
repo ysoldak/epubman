@@ -53,7 +53,7 @@ if [ "X$COMMAND" = "Xadd" ]; then
 		$EPUBMAN_DIR/device.sh add "$newpath"
 	fi
 
-	$EPUBMAN_DIR/label.sh 
+	$EPUBMAN_DIR/label.sh "$newpath"
 
 elif [ "X$COMMAND" = "Xdel" ]; then
 	filepath=`get_abs_path "$2"`

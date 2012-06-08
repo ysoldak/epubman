@@ -24,10 +24,12 @@ mkdir -p $DEVICE_LOCAL_DIR
 if [ "X$COMMAND" = "Xadd" ]; then
 	filename=`basename "$FILE"`
 	ln -s "../Files/$filename" "$DEVICE_LOCAL_DIR/$filename"
+	$EPUBMAN_DIR/label.sh "$FILE"
 
 elif [ "X$COMMAND" = "Xdel" ]; then
 	filename=`basename "$FILE"`
 	rm -f "$DEVICE_LOCAL_DIR/$filename"
+	$EPUBMAN_DIR/label.sh "$FILE"
 
 elif [ "X$COMMAND" = "Xsync" ]; then
 	echo "Syncing Nook with your Library"
