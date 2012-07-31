@@ -1,4 +1,4 @@
-#/bin/sh
+#/bin/bash
 
 pwd_tmp=`pwd`
 cd `dirname "$0"`

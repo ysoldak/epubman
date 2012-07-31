@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ###############################################################################
 # Manages indices for .epub files stored in the LIB_DIR/Files
